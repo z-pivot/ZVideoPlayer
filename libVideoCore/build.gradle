@@ -1,0 +1,54 @@
+apply plugin: 'com.android.library'
+
+android {
+    signingConfigs {
+        zvp {
+            keyAlias 'key0'
+            keyPassword '960930'
+            storeFile file('D:/Andriod Studio WorkSpace/ZVideoPlayer/zvp.jks')
+            storePassword '960930'
+        }
+    }
+    compileSdkVersion 28
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
+    api 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8'
+    api 'tv.danmaku.ijk.media:ijkplayer-exo:0.8.8'
+    implementation 'com.github.ctiao:DanmakuFlameMaster:0.9.25'
+    implementation 'com.github.ctiao:ndkbitmap-armv7a:0.9.21'
+    api 'com.danikula:videocache:2.7.1'
+    implementation files('libs/exo-2.0.4.jar')
+    implementation files('libs/MobCommons-2017.1201.1507.jar')
+    implementation files('libs/MobTools-2017.1201.1507.jar')
+    implementation files('libs/ShareSDK-Core-3.1.2.jar')
+    implementation files('libs/ShareSDK-QQ-3.1.2.jar')
+    implementation files('libs/ShareSDK-QZone-3.1.2.jar')
+    implementation files('libs/ShareSDK-SinaWeibo-3.1.2.jar')
+    implementation files('libs/ShareSDK-Wechat-3.1.2.jar')
+    implementation files('libs/ShareSDK-Wechat-Core-3.1.2.jar')
+    implementation files('libs/ShareSDK-Wechat-Favorite-3.1.2.jar')
+    implementation files('libs/ShareSDK-Wechat-Moments-3.1.2.jar')
+}
