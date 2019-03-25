@@ -20,12 +20,12 @@
 ### 1.视频清晰度切换
 这个功能主要是给出包含三个不同清晰度的同一个视频的不同地址集合，用户点击哪一个清晰度按钮就初始化播放哪一个地址的视频
 其实就是简单的按钮点击响应更换视频播放方法的url参数
-![](https://github.com/z-pivot/ZVideoPlayer/blob/master/images/qxd.png)
+![清晰度](https://github.com/z-pivot/ZVideoPlayer/blob/master/images/qxd.png)
 
 ### 2.关于分享
 分享功能是引入的是mob的ShareSDK，这个网站上有很多的开源免费的API，上面有很详细的教程，这里的微信分享比较麻烦，
 先要获取本app的签名再从微信开发者平台上获取id和密码，有兴趣的可以尝试一下，挺折磨人的
-![](https://github.com/z-pivot/ZVideoPlayer/blob/master/images/fenxiang.png)
+![分享](https://github.com/z-pivot/ZVideoPlayer/blob/master/images/fenxiang.png)
 
 ### 3.THVideoView
 这个类是大部分功能的实现类，里面有部分必须初始化的成员变量需要说明一下：
@@ -50,20 +50,19 @@
         float textSize = parseFloat(values[2]); // 字体大小
         int color = (int) ((0xff000000 | parseLong(values[3])) & 0xffffffff); // 颜色
         item = buildDanmaku(t, type, time, textSize, color);
-![](https://github.com/z-pivot/ZVideoPlayer/blob/master/images/danmu.png)
+![弹幕](https://github.com/z-pivot/ZVideoPlayer/blob/master/images/danmu.png)
       
 * private List<String> sharpnessUrlList = new ArrayList<>();//不同清晰度视频的url集合 默认有标清、高清、超清，需要自行设置不可为空，若没有该清晰度的地址就用同一地址
 * private boolean isShowWifiDialog = true;//是否显示移动网络提示框，一般就是true
 * private String shareTitle = "百度一下";//分享的标题
-  private String shareUrl = "http://blog.csdn.net/qq_31390699";//分享到的链接，一般为视频所在的网址
-  private String shareImg = "http://img.zcool.cn/community/0183b855420c990000019ae98b9ce8.jpg@900w_1l_2o_100sh.jpg";//分享的封面图片
-  private String shareDesc = "不懂你就百度啊";//分享的描述文字
-  分享有关的属性都需要进行设置
+* private String shareUrl = "http://blog.csdn.net/qq_31390699";//分享到的链接，一般为视频所在的网址
+* private String shareImg = "http://img.zcool.cn/community/0183b855420c990000019ae98b9ce8.jpg@900w_1l_2o_100sh.jpg";//分享的封面图片
+* private String shareDesc = "不懂你就百度啊";//分享的描述文字
   
 ### 4.MainActivity
 主Demo界面中除了对THVideoView的初始化设置，还包括了视频切换、视频列表、浮窗模式功能
 可以在MainActivity的基础上对主界面进行布局修改
-![](https://github.com/z-pivot/ZVideoPlayer/blob/master/images/dangqianfuchuang.png)
-![](https://github.com/z-pivot/ZVideoPlayer/blob/master/images/xitongfuchuang.png)
-![](https://github.com/z-pivot/ZVideoPlayer/blob/master/images/liebiao.png)
-![](https://github.com/z-pivot/ZVideoPlayer/blob/master/images/zhibo.png)
+![当前浮窗](https://github.com/z-pivot/ZVideoPlayer/blob/master/images/dangqianfuchuang.png)
+![系统浮窗](https://github.com/z-pivot/ZVideoPlayer/blob/master/images/xitongfuchuang.png)
+![视频列表](https://github.com/z-pivot/ZVideoPlayer/blob/master/images/liebiao.png)
+![视频直播](https://github.com/z-pivot/ZVideoPlayer/blob/master/images/zhibo.png)
