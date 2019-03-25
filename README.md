@@ -54,14 +54,14 @@
       
 * private List<String> sharpnessUrlList = new ArrayList<>();//不同清晰度视频的url集合 默认有标清、高清、超清，需要自行设置不可为空，若没有该清晰度的地址就用同一地址
 * private boolean isShowWifiDialog = true;//是否显示移动网络提示框，一般就是true
-* private String shareTitle = "百度一下";//分享的标题
-* private String shareUrl = "http://blog.csdn.net/qq_31390699";//分享到的链接，一般为视频所在的网址
-* private String shareImg = "http://img.zcool.cn/community/0183b855420c990000019ae98b9ce8.jpg@900w_1l_2o_100sh.jpg";//分享的封面图片
-* private String shareDesc = "不懂你就百度啊";//分享的描述文字
+* private String shareTitle;//分享的标题
+* private String shareUrl;//分享到的链接，一般为视频所在的网址
+* private String shareImg;//分享的封面图片
+* private String shareDesc;//分享的描述文字
+![分享到QQ](https://github.com/z-pivot/ZVideoPlayer/blob/master/images/fenxiangQQ.png)
   
 ### 4.MainActivity
-主Demo界面中除了对THVideoView的初始化设置，还包括了视频切换、视频列表、浮窗模式功能
-可以在MainActivity的基础上对主界面进行布局修改
+主Demo界面中除了对THVideoView的初始化设置，还包括了视频切换、视频列表、浮窗模式功能，可以在MainActivity的基础上对主界面进行布局修改
 ![当前浮窗](https://github.com/z-pivot/ZVideoPlayer/blob/master/images/dangqianfuchuang.png)
 ![系统浮窗](https://github.com/z-pivot/ZVideoPlayer/blob/master/images/xitongfuchuang.png)
 ![视频列表](https://github.com/z-pivot/ZVideoPlayer/blob/master/images/liebiao.png)
