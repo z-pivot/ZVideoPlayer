@@ -20,11 +20,13 @@
 ### 1.视频清晰度切换
 这个功能主要是给出包含三个不同清晰度的同一个视频的不同地址集合，用户点击哪一个清晰度按钮就初始化播放哪一个地址的视频
 其实就是简单的按钮点击响应更换视频播放方法的url参数
+
 ![清晰度](https://github.com/z-pivot/ZVideoPlayer/blob/master/images/qxd.png)
 
 ### 2.关于分享
 分享功能是引入的是mob的ShareSDK，这个网站上有很多的开源免费的API，上面有很详细的教程，这里的微信分享比较麻烦，
 先要获取本app的签名再从微信开发者平台上获取id和密码，有兴趣的可以尝试一下，挺折磨人的
+
 ![分享](https://github.com/z-pivot/ZVideoPlayer/blob/master/images/fenxiang.png)
 
 ### 3.THVideoView
@@ -58,10 +60,12 @@
 * private String shareUrl;//分享到的链接，一般为视频所在的网址
 * private String shareImg;//分享的封面图片
 * private String shareDesc;//分享的描述文字
+
 ![分享到QQ](https://github.com/z-pivot/ZVideoPlayer/blob/master/images/fenxiangQQ.png)
   
 ### 4.MainActivity
 主Demo界面中除了对THVideoView的初始化设置，还包括了视频切换、视频列表、浮窗模式功能，可以在MainActivity的基础上对主界面进行布局修改
+
 ![当前浮窗](https://github.com/z-pivot/ZVideoPlayer/blob/master/images/dangqianfuchuang.png)
 ![系统浮窗](https://github.com/z-pivot/ZVideoPlayer/blob/master/images/xitongfuchuang.png)
 ![视频列表](https://github.com/z-pivot/ZVideoPlayer/blob/master/images/liebiao.png)
