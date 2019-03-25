@@ -70,7 +70,7 @@ public class THVideoView extends QSVideoViewHelp implements View.OnClickListener
     private ImageView btnDanMuClose;//弹幕关按钮
     private ImageView btnDanMuWrite;//弹幕写按钮
     private TextView titleTextView;//标题
-    private TextView btnSharpness;//清晰度更换按钮
+    private TextView btnSharpness;//清晰度切换按钮
     private EditText danMuText;//弹幕文本编辑框
     private ViewGroup bottomContainer;//底部栏
     private ViewGroup topContainer;//顶部栏

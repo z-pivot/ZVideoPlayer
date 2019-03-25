@@ -2,12 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     signingConfigs {
-        zvp {
-            keyAlias 'key0'
-            keyPassword '960930'
-            storeFile file('D:/Andriod Studio WorkSpace/ZVideoPlayer/zvp.jks')
-            storePassword '960930'
-        }
     }
     compileSdkVersion 28
     defaultConfig {
@@ -40,6 +34,5 @@ dependencies {
     implementation "com.android.support:recyclerview-v7:$supprotVersion"
     implementation 'com.github.ctiao:DanmakuFlameMaster:0.9.25'
     implementation 'com.github.ctiao:ndkbitmap-armv7a:0.9.21'
-    implementation 'com.github.zcolin:ZRecyclerView:2.0.0'
     implementation project(':libVideoCore')
 }

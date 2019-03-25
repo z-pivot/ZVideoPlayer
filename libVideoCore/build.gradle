@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 android {
     signingConfigs {
-        zvp {
+        zvplib {
             keyAlias 'key0'
             keyPassword '960930'
             storeFile file('D:/Andriod Studio WorkSpace/ZVideoPlayer/zvp.jks')

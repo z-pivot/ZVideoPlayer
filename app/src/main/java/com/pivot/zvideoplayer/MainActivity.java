@@ -39,7 +39,7 @@ import java.util.Arrays;
 public class MainActivity extends AppCompatActivity {
     THVideoView videoView;
 
-    String mp4 = "http://v.ysbang.cn//data/video/2015/rkb/2015rkb01.mp4";//初始化播放地址
+    String mp4 = "https://media.w3.org/2010/05/sintel/trailer.mp4";//初始化播放地址
     String otherMp4 = "http://sinacloud.net/sakaue/shelter.mp4";//切换播放地址
     String m3u8 = "http://ivi.bupt.edu.cn/hls/cctv6hd.m3u8";//直播地址 cctv6
     boolean flag;//记录退出时播放状态 回来的时候继续播放
