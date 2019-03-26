@@ -16,6 +16,9 @@ import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.pivot.libvideocore.utils.HandleTouchEvent;
+import com.pivot.libvideocore.utils.Util;
+
 /**
  * Created by song on 2017/2/13.
  * Contact github.com/tohodog

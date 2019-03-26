@@ -40,6 +40,9 @@ import com.pivot.libvideocore.media.BaseMedia;
 import com.pivot.libvideocore.media.IjkMedia;
 import com.pivot.libvideocore.share.ShareDialog;
 import com.pivot.libvideocore.share.ShareUtils;
+import com.pivot.libvideocore.utils.IVideoPlayer;
+import com.pivot.libvideocore.utils.PlayListener;
+import com.pivot.libvideocore.utils.Util;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -214,10 +217,14 @@ public class THVideoView extends QSVideoViewHelp implements View.OnClickListener
             final String[] items = {"标 清", "高 清", "超 清"};
             AlertDialog.Builder listDialog = new AlertDialog.Builder(getContext());
             listDialog.setAdapter(new ArrayAdapter<>(getContext(),R.layout.dialog_item, items), (dialog, which) -> {
+                int position = getPosition();
                 btnSharpness.setText(items[which]);
                 titleTextView.setText(title);
+                isShowWifiDialog = false;//清晰度切换时不用提示当前移动网络
                 setUp(sharpnessUrlList.get(which), title);
                 setDecodeMedia(IjkMedia.class);
+                seekTo(position);//从切换时的位置播放
+                openCache();
                 play();
             });
             dialog = listDialog.create();

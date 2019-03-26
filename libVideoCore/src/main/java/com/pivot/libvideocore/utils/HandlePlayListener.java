@@ -1,4 +1,13 @@
-package com.pivot.libvideocore;
+/*
+ * *********************************************************
+ *   author   fjm
+ *   company  telchina
+ *   email    fanjiaming@telchina.net
+ *   date     19-3-26 上午8:57
+ * ********************************************************
+ */
+
+package com.pivot.libvideocore.utils;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,7 +19,7 @@ import java.util.Set;
  * 辅助监听事件发放
  */
 
-class HandlePlayListener implements PlayListener {
+public class HandlePlayListener implements PlayListener {
 
     private PlayListener setPlayListener;
     private Set<PlayListener> playListenerSet;
@@ -43,7 +52,7 @@ class HandlePlayListener implements PlayListener {
     }
 
 
-    void setListener(PlayListener playListener) {
+    public void setListener(PlayListener playListener) {
         if (playListener != null) {
             setPlayListener = playListener;
             addListener(playListener);
@@ -52,7 +61,7 @@ class HandlePlayListener implements PlayListener {
         }
     }
 
-    void addListener(PlayListener playListener) {
+    public void addListener(PlayListener playListener) {
         if (playListener == null) {
             return;
         }
@@ -62,7 +71,7 @@ class HandlePlayListener implements PlayListener {
         playListenerSet.add(playListener);
     }
 
-    void removeListener(PlayListener playListener) {
+    public void removeListener(PlayListener playListener) {
         if (playListenerSet == null || playListener == null) {
             return;
         }

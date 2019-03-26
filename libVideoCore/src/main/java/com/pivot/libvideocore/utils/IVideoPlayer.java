@@ -1,4 +1,13 @@
-package com.pivot.libvideocore;
+/*
+ * *********************************************************
+ *   author   fjm
+ *   company  telchina
+ *   email    fanjiaming@telchina.net
+ *   date     19-3-26 上午8:57
+ * ********************************************************
+ */
+
+package com.pivot.libvideocore.utils;
 
 import android.graphics.Bitmap;
 

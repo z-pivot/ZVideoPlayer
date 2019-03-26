@@ -1,10 +1,20 @@
-package com.pivot.libvideocore;
+/*
+ * *********************************************************
+ *   author   fjm
+ *   company  telchina
+ *   email    fanjiaming@telchina.net
+ *   date     19-3-26 上午8:57
+ * ********************************************************
+ */
+
+package com.pivot.libvideocore.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.util.Log;
 
+import com.pivot.libvideocore.QSVideoView;
 import com.pivot.libvideocore.media.AndroidMedia;
 import com.pivot.libvideocore.media.BaseMedia;
 import com.pivot.libvideocore.media.IMediaCallback;
@@ -47,7 +57,7 @@ public class ConfigManage {
     }
 
 
-    IRenderView getIRenderView(Context context) {
+    public IRenderView getIRenderView(Context context) {
         if (Build.VERSION.SDK_INT >= 14) {
             return new TextureRenderView(context);
         } else {
@@ -57,7 +67,7 @@ public class ConfigManage {
 
 
     //后期扩展其他解码器 exo ijk... exo api需大于16
-    IMediaControl getMediaControl(IMediaCallback iMediaCallback, Class<? extends BaseMedia> claxx) {
+    public IMediaControl getMediaControl(IMediaCallback iMediaCallback, Class<? extends BaseMedia> claxx) {
         if (iMediaCallback instanceof QSVideoView) {
             addVideoView((QSVideoView) iMediaCallback);
         }

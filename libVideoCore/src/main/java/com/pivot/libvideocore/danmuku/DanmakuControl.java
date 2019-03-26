@@ -5,8 +5,8 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.ViewGroup;
 
-import com.pivot.libvideocore.IVideoPlayer;
-import com.pivot.libvideocore.PlayListener;
+import com.pivot.libvideocore.utils.IVideoPlayer;
+import com.pivot.libvideocore.utils.PlayListener;
 import com.pivot.libvideocore.QSVideoView;
 import com.pivot.libvideocore.R;
 

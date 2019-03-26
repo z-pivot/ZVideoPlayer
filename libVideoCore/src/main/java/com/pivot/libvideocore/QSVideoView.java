@@ -21,6 +21,11 @@ import com.pivot.libvideocore.media.IMediaCallback;
 import com.pivot.libvideocore.media.IMediaControl;
 import com.pivot.libvideocore.rederview.IRenderView;
 import com.pivot.libvideocore.rederview.SufaceRenderView;
+import com.pivot.libvideocore.utils.ConfigManage;
+import com.pivot.libvideocore.utils.HandlePlayListener;
+import com.pivot.libvideocore.utils.IVideoPlayer;
+import com.pivot.libvideocore.utils.PlayListener;
+import com.pivot.libvideocore.utils.Util;
 
 import java.util.Map;
 

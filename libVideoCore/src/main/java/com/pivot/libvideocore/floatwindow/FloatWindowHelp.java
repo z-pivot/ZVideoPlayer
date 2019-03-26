@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 
-import com.pivot.libvideocore.Util;
+import com.pivot.libvideocore.utils.Util;
 
 import java.lang.reflect.Method;
 

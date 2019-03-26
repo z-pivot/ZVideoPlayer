@@ -26,7 +26,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.pivot.libvideocore.IVideoPlayer;
+import com.pivot.libvideocore.utils.IVideoPlayer;
 import com.pivot.libvideocore.THVideoView;
 import com.pivot.libvideocore.floatwindow.FloatParams;
 import com.pivot.libvideocore.media.IjkMedia;
@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         videoView.enterFullMode = 3;//进入全屏的模式 -1什么都不做 0横屏 1竖屏 2传感器自动横竖屏 3根据视频比例自动确定横竖屏
         videoView.isWindowGesture = true;//是否非全屏下也可以手势调节进度
         videoView.setSharpnessUrlList(Arrays.asList(mp4, mp4, mp4));//设置视频url集合 标清 高清 超清 这里不同清晰度的地址用的是同一个，因为没找到
+        videoView.setShowWifiDialog(true);//设置是否显示移动网络提示框 true
         videoView.startVideo(mp4, "视频123", IjkMedia.class);//初始化播放
         findViewById(R.id.btn_url).setOnClickListener(v -> changeUrl());//点击切换视频
     }
@@ -148,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
         new AlertDialog.Builder(this).setView(editText).setTitle("网络视频地址").setNegativeButton("确定", (dialog, which) -> {
             mp4 = editText.getText().toString();
             videoView.setSharpnessUrlList(Arrays.asList(mp4, mp4, mp4));
+            videoView.setShowWifiDialog(true);//由于在清晰度切换时会把此属性设置为false，所以这里需要重新设置为true
             videoView.startVideo(mp4, "视频1", IjkMedia.class);//初始化播放
         }).setPositiveButton("本地视频", (dialog, which) -> {
             Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
@@ -195,6 +197,7 @@ public class MainActivity extends AppCompatActivity {
     //现场直播
     public void liveBroadcast(View v) {
         videoView.setSharpnessUrlList(Arrays.asList(m3u8, m3u8, m3u8));
+        videoView.setShowWifiDialog(true);
         videoView.startVideo(m3u8, "m3u8直播", IjkMedia.class);//初始化播放
     }
 

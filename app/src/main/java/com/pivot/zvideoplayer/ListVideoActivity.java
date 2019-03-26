@@ -20,8 +20,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.pivot.libvideocore.IVideoPlayer;
-import com.pivot.libvideocore.PlayListener;
+import com.pivot.libvideocore.utils.IVideoPlayer;
+import com.pivot.libvideocore.utils.PlayListener;
 import com.pivot.libvideocore.THVideoView;
 import com.pivot.libvideocore.io.FileUtil;
 import com.pivot.libvideocore.media.IjkMedia;
