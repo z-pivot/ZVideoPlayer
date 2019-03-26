@@ -3,7 +3,7 @@
     dependencies {
         implementation 'com.github.ctiao:DanmakuFlameMaster:0.9.25'
         implementation 'com.github.ctiao:ndkbitmap-armv7a:0.9.21'
-        implementation 'com.github.z-pivot:ZVideoPlayer:1.0.0'
+        implementation 'com.github.z-pivot:ZVideoPlayer:1.0.1'
     }
 
 ## 基本功能：
