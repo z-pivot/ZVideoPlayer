@@ -66,6 +66,21 @@ public class THVideoView extends QSVideoViewHelp implements View.OnClickListener
     private boolean isShowWifiDialog = true;//是否显示移动网络提示框
     private List<String> sharpnessUrlList = new ArrayList<>();//不同清晰度视频的url集合 默认有标清、高清、超清
     private Class<? extends BaseMedia> decodeMediaStyle = IjkMedia.class;//视频解码方式
+    private PlatformActionListener platformActionListener = new PlatformActionListener() {//分享回调
+        @Override
+        public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
+            Log.e("kid", "分享成功");
+        }
+        @Override
+        public void onError(Platform platform, int i, Throwable throwable) {
+            Log.e("kid", "分享失败");
+        }
+
+        @Override
+        public void onCancel(Platform platform, int i) {
+            Log.e("kid", "分享取消");
+        }
+    };
     
     //控件
     private ImageView coverImageView;//封面
@@ -84,23 +99,6 @@ public class THVideoView extends QSVideoViewHelp implements View.OnClickListener
     private DanmakuControl danmakuControl;//弹幕控制器
     private ViewGroup settingContainer;//设置详情栏
     private AlertDialog dialog;//清晰度切换
-
-    //分享回调
-    private PlatformActionListener platformActionListener = new PlatformActionListener() {
-        @Override
-        public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
-            Log.e("kid", "分享成功");
-        }
-        @Override
-        public void onError(Platform platform, int i, Throwable throwable) {
-            Log.e("kid", "分享失败");
-        }
-
-        @Override
-        public void onCancel(Platform platform, int i) {
-            Log.e("kid", "分享取消");
-        }
-    };
     
     public THVideoView(Context context) {
         this(context, null);
@@ -148,20 +146,17 @@ public class THVideoView extends QSVideoViewHelp implements View.OnClickListener
         findViewById(R.id.tv_prop_fit).setOnClickListener(this);
         findViewById(R.id.tv_prop_4_3).setOnClickListener(this);
         
-        danmakuControl = DanmakuControl.bind(//初始化弹幕控制器
-                this, new QSDanmakuParser(danMuJson == null ? FileUtil.readAssets("danmu.json", getContext()): danMuJson), DanmakuConfig.getDefaultContext()
-        );
-        danmakuControl.hide();
-
-        findViewById(R.id.setting).setOnClickListener(v -> {//设置按钮点击监听
+        //设置按钮点击监听
+        findViewById(R.id.setting).setOnClickListener(v -> {
             if (settingContainer.getVisibility() == GONE) {
                 settingContainer.setVisibility(VISIBLE);
             } else {
                 settingContainer.setVisibility(GONE);
             }
         });
-
-        findViewById(R.id.share).setOnClickListener(v -> {//分享按钮点击监听
+        
+        //分享按钮点击监听
+        findViewById(R.id.share).setOnClickListener(v -> {
             ShareDialog shareDialog = new ShareDialog(getContext());
             shareDialog.builder().show();
             shareDialog.setShareClickListener(new ShareDialog.ShareClickListener() {
@@ -187,7 +182,12 @@ public class THVideoView extends QSVideoViewHelp implements View.OnClickListener
                 }
             });
         });
-        
+
+        //初始化弹幕控制器
+        danmakuControl = DanmakuControl.bind(
+                this, new QSDanmakuParser(danMuJson == null ? FileUtil.readAssets("danmu.json", getContext()): danMuJson), DanmakuConfig.getDefaultContext()
+        );
+        danmakuControl.hide();
         danMuText.setImeOptions(EditorInfo.IME_ACTION_DONE);//弹幕编辑框被点击时的响应类型
         btnDanMuOpen.setOnClickListener(v -> {//关闭弹幕
             btnDanMuClose.setVisibility(VISIBLE);
@@ -213,7 +213,9 @@ public class THVideoView extends QSVideoViewHelp implements View.OnClickListener
             }
             return false;
         });
-        btnSharpness.setOnClickListener(v -> {//切换清晰度
+        
+        //切换清晰度
+        btnSharpness.setOnClickListener(v -> {
             final String[] items = {"标 清", "高 清", "超 清"};
             AlertDialog.Builder listDialog = new AlertDialog.Builder(getContext());
             listDialog.setAdapter(new ArrayAdapter<>(getContext(),R.layout.dialog_item, items), (dialog, which) -> {
@@ -239,8 +241,9 @@ public class THVideoView extends QSVideoViewHelp implements View.OnClickListener
             lp.width = 180;//dialog的宽,高度自适应
             dialogWindow.setAttributes(lp);
         });
-
-        setPlayListener(new PlayListener() {//播放事件监听
+        
+        //播放事件监听
+        setPlayListener(new PlayListener() {
             @Override
             public void onStatus(int status) {//播放状态
                 if (status == IVideoPlayer.STATE_AUTO_COMPLETE) {
@@ -268,7 +271,7 @@ public class THVideoView extends QSVideoViewHelp implements View.OnClickListener
             }
         });
         
-        //会根据播放器状态而改变的view加进去
+        //会因为播放器状态而改变的view 加进去
         changeViews = new ArrayList<>();
         changeViews.add(topContainer);
         changeViews.add(bottomContainer);
@@ -430,13 +433,11 @@ public class THVideoView extends QSVideoViewHelp implements View.OnClickListener
     private PopupWindow mVolumeDialog;//音量调节弹出框
     private ProgressBar mDialogVolumeProgressBar;//音量进度条
     private TextView mDialogVolumeTextView;//音量文本 0-15
-    private ImageView mDialogVolumeImageView;//音量图标
 
     @Override
     protected boolean showVolumeDialog(int nowVolume, int maxVolume) {
         if (mVolumeDialog == null) {
             View localView = LayoutInflater.from(getContext()).inflate(R.layout.jc_dialog_volume, null);
-            mDialogVolumeImageView = localView.findViewById(R.id.volume_image_tip);
             mDialogVolumeTextView = localView.findViewById(R.id.tv_volume);
             mDialogVolumeProgressBar = localView.findViewById(R.id.volume_progressbar);
             mDialogVolumeProgressBar.setMax(maxVolume);

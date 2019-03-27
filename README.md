@@ -3,7 +3,7 @@
     dependencies {
         implementation 'com.github.ctiao:DanmakuFlameMaster:0.9.25'
         implementation 'com.github.ctiao:ndkbitmap-armv7a:0.9.21'
-        implementation 'com.github.z-pivot:ZVideoPlayer:1.0.1'
+        implementation 'com.github.z-pivot:ZVideoPlayer:latest.release'
     }
 
 ## 基本功能：
@@ -60,7 +60,7 @@
 * private String shareUrl;//分享到的链接，一般为视频所在的网址
 * private String shareImg;//分享的封面图片
 * private String shareDesc;//分享的描述文字
-
+* private PlatformActionListener platformActionListener = new PlatformActionListener() {...};//分享执行后的回调
 ![分享到QQ](https://github.com/z-pivot/ZVideoPlayer/blob/master/images/fenxiangQQ.png)
   
 ### 4.MainActivity

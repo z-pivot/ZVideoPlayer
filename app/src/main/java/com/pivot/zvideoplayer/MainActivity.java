@@ -26,14 +26,15 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.pivot.libvideocore.utils.IVideoPlayer;
 import com.pivot.libvideocore.THVideoView;
 import com.pivot.libvideocore.floatwindow.FloatParams;
 import com.pivot.libvideocore.media.IjkMedia;
+import com.pivot.libvideocore.utils.IVideoPlayer;
 
 import java.util.Arrays;
 
 /**
+ * 主Demo界面
  * @author fjm
  */
 public class MainActivity extends AppCompatActivity {
@@ -44,6 +45,16 @@ public class MainActivity extends AppCompatActivity {
     String m3u8 = "http://ivi.bupt.edu.cn/hls/cctv6hd.m3u8";//直播地址 cctv6
     boolean flag;//记录退出时播放状态 回来的时候继续播放
     int position;//记录销毁时的进度 回来继续盖进度播放
+    Handler handler = new Handler();
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            if (videoView.getCurrentState() != IVideoPlayer.STATE_AUTO_COMPLETE) {
+                position = videoView.getPosition();
+            }
+            videoView.release();
+        }
+    };
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
     }
     
     @Override
-    public void onResume() {//页面第一次或恢复显示时执行
+    public void onResume() {//本页面第一次或恢复显示时执行
         super.onResume();
         if (flag) {
             videoView.play();
@@ -92,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
     }
     
     @Override
-    public void onPause() {//页面跳转或退出时执行 与onResume()对应
+    public void onPause() {//启动另一个活动时执行 与onResume()对应
         super.onPause();
         if (videoView.isSystemFloatMode()) {
             return;
@@ -102,17 +113,16 @@ public class MainActivity extends AppCompatActivity {
     }
     
     @Override
-    public void onStop() {
+    public void onStop() {//启动另一个活动并且这个活动完全覆盖当前页面时执行
         super.onStop();
         if (videoView.isSystemFloatMode()) {
             return;
         }
-        //不马上销毁 延时15秒
-        handler.postDelayed(runnable, 1000 * 15);
+        handler.postDelayed(runnable, 1000 * 15);//不马上销毁 延时15秒
     }
 
     @Override
-    public void onDestroy() {
+    public void onDestroy() {//当前活动销毁时执行
         super.onDestroy();//销毁
         if (videoView.isSystemFloatMode()) {
             videoView.quitWindowFloat();
@@ -123,44 +133,36 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 & resultCode == RESULT_OK) {
+        if (requestCode == 1 & resultCode == RESULT_OK) {//切换成本地视频后的地址回传
             mp4 = data.getData().toString();
-            videoView.startVideo(mp4, "视频1", IjkMedia.class);//初始化播放
+            videoView.startVideo(mp4, "视频1", IjkMedia.class);
             ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-            clipboard.setPrimaryClip(ClipData.newPlainText("text", mp4));
+            clipboard.setPrimaryClip(ClipData.newPlainText("text", mp4));//将本地视频的地址复制到剪切板
         }
     }
-    
-    Handler handler = new Handler();
-    Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            if (videoView.getCurrentState() != IVideoPlayer.STATE_AUTO_COMPLETE) {
-                position = videoView.getPosition();
-            }
-            videoView.release();
-        }
-    };
     
     //切换视频地址
     public void changeUrl() {
         final EditText editText = new EditText(this);
         editText.setText(otherMp4);
-        new AlertDialog.Builder(this).setView(editText).setTitle("网络视频地址").setNegativeButton("确定", (dialog, which) -> {
-            mp4 = editText.getText().toString();
-            videoView.setSharpnessUrlList(Arrays.asList(mp4, mp4, mp4));
-            videoView.setShowWifiDialog(true);//由于在清晰度切换时会把此属性设置为false，所以这里需要重新设置为true
-            videoView.startVideo(mp4, "视频1", IjkMedia.class);//初始化播放
-        }).setPositiveButton("本地视频", (dialog, which) -> {
-            Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
-            startActivityForResult(i, 1);
-        }).create().show();
+        new AlertDialog.Builder(this).setView(editText).setTitle("网络视频地址")
+                .setNegativeButton("确定", (dialog, which) -> {
+                    mp4 = editText.getText().toString();
+                    videoView.setSharpnessUrlList(Arrays.asList(mp4, mp4, mp4));
+                    videoView.setShowWifiDialog(true);//由于在清晰度切换时会把此属性设置为false，所以这里需要重新设置为true
+                    videoView.startVideo(mp4, "视频1", IjkMedia.class);
+                })
+                .setPositiveButton("本地视频", (dialog, which) -> {
+                    Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(i, 1);//设置数据回传请求码为1
+                })
+                .create().show();
     }
     
     //进入浮窗
     private void enterFloat(boolean isSystemFloat) {
         FloatParams floatParams = videoView.getFloatParams();
-        if (floatParams == null) {
+        if (floatParams == null) {//配置浮窗参数
             floatParams = new FloatParams();
             floatParams.x = 0;
             floatParams.y = 0;
