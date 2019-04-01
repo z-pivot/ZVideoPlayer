@@ -16,11 +16,11 @@ import cn.sharesdk.wechat.moments.WechatMoments;
  */
 public class ShareUtils {
     //QQ好友分享
-    public static void shareQQ(String title, String shareurl, String text, String imageUrl, PlatformActionListener listener) {
+    public static void shareQQ(String title, String shareUrl, String text, String imageUrl, PlatformActionListener listener) {
         Platform qq = ShareSDK.getPlatform(QQ.NAME);
         QQ.ShareParams sp = new QQ.ShareParams();
         sp.setTitle(title);
-        sp.setTitleUrl(shareurl); // 标题的超链接
+        sp.setTitleUrl(shareUrl); // 标题的超链接
         sp.setText(text);
         sp.setImageUrl(imageUrl);
         qq.setPlatformActionListener(listener);
@@ -28,13 +28,13 @@ public class ShareUtils {
     }
     
     //QQ空间
-    public static  void shareQQZone(String title, String shareurl, String text, String imageUrl, PlatformActionListener listener) {
+    public static  void shareQQZone(String title, String shareUrl, String text, String imageUrl, PlatformActionListener listener) {
         Platform qqZone =ShareSDK.getPlatform(QZone.NAME);
         QZone.ShareParams sp = new QZone.ShareParams();
         sp.setShareType(Platform.SHARE_IMAGE);
         sp.setTitle(title);
-        sp.setTitleUrl(shareurl); // 标题的超链接
-        sp.setSiteUrl(shareurl);
+        sp.setTitleUrl(shareUrl); // 标题的超链接
+        sp.setSiteUrl(shareUrl);
         sp.setSite("QQ空间标题");
         sp.setText(text);
         sp.setImageUrl(imageUrl);
@@ -43,12 +43,12 @@ public class ShareUtils {
     }
     
     //新浪微博
-    public static void shareWeiBo(String title, String shareurl, String text, String imageUrl, PlatformActionListener listener) {
+    public static void shareWeiBo(String title, String shareUrl, String text, String imageUrl, PlatformActionListener listener) {
         Platform sina =ShareSDK.getPlatform(SinaWeibo.NAME);
         SinaWeibo.ShareParams sp = new SinaWeibo.ShareParams();
         sp.setTitle(title);
-        sp.setTitleUrl(shareurl); // 标题的超链接
-        sp.setSiteUrl(shareurl);
+        sp.setTitleUrl(shareUrl); // 标题的超链接
+        sp.setSiteUrl(shareUrl);
         sp.setText(text);
         sp.setImageUrl(imageUrl);
         sina.setPlatformActionListener(listener);
@@ -56,13 +56,13 @@ public class ShareUtils {
     }
     
     //微信
-    public static void shareWeChat(String title, String shareurl, String text, String imageUrl, PlatformActionListener listener) {
+    public static void shareWeChat(String title, String shareUrl, String text, String imageUrl, PlatformActionListener listener) {
         Platform weixin =ShareSDK.getPlatform(Wechat.NAME);
         Wechat.ShareParams sp = new Wechat.ShareParams();
         sp.setShareType(Platform.SHARE_WEBPAGE);
         sp.setTitle(title);
         sp.setImageUrl(imageUrl);
-        sp.setUrl(shareurl);
+        sp.setUrl(shareUrl);
         sp.setText(text);
 //        sp.setSite("QQ空间标题");
         // siteUrl是分享此内容的网站地址，仅在QQ空间使用
@@ -71,13 +71,13 @@ public class ShareUtils {
     }
     
     //微信朋友圈
-    public static void sharePyq(String title, String shareurl, String text, String imageUrl, PlatformActionListener listener) {
+    public static void sharePyq(String title, String shareUrl, String text, String imageUrl, PlatformActionListener listener) {
         Platform weixin =ShareSDK.getPlatform(WechatMoments.NAME);
         WechatMoments.ShareParams sp = new WechatMoments.ShareParams();
         sp.setShareType(Platform.SHARE_WEBPAGE);
         sp.setTitle(title);
         sp.setImageUrl(imageUrl);
-        sp.setUrl(shareurl);
+        sp.setUrl(shareUrl);
         sp.setText(text);
 //        sp.setSite("QQ空间标题");
         weixin.setPlatformActionListener(listener);

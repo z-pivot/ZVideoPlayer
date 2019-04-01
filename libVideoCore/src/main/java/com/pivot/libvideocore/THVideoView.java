@@ -61,7 +61,7 @@ public class THVideoView extends QSVideoViewHelp implements View.OnClickListener
     private String danMuJson;//弹幕json数据
     private String shareTitle = "百度一下";//分享的标题
     private String shareUrl = "http://blog.csdn.net/qq_31390699";//分享的链接
-    private String shareImg = "http://img.zcool.cn/community/0183b855420c990000019ae98b9ce8.jpg@900w_1l_2o_100sh.jpg";//分享的封面图片
+    private String shareImg = "https://gss0.baidu.com/7Po3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/3801213fb80e7bec1bc6110b262eb9389b506b3f.jpg";//分享的封面图片
     private String shareDesc = "不懂你就百度啊";//分享的描述
     private boolean isShowWifiDialog = true;//是否显示移动网络提示框
     private List<String> sharpnessUrlList = new ArrayList<>();//不同清晰度视频的url集合 默认有标清、高清、超清
@@ -73,7 +73,8 @@ public class THVideoView extends QSVideoViewHelp implements View.OnClickListener
         }
         @Override
         public void onError(Platform platform, int i, Throwable throwable) {
-            Log.e("kid", "分享失败");
+            Log.e("kid", "分享失败" + throwable.toString());
+            
         }
 
         @Override

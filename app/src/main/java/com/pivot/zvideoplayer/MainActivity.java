@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
             floatParams.w = getResources().getDisplayMetrics().widthPixels * 3 / 4;
             floatParams.h = floatParams.w * 9 / 16;
             floatParams.round = 30;
-            floatParams.fade = 0.8f;
+            floatParams.fade = 1.0f;
             floatParams.canMove = true;
             floatParams.canCross = false;
         }

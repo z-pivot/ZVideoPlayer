@@ -58,7 +58,7 @@
 * private boolean isShowWifiDialog = true;//是否显示移动网络提示框，一般就是true
 * private String shareTitle;//分享的标题
 * private String shareUrl;//分享到的链接，一般为视频所在的网址
-* private String shareImg;//分享的封面图片
+* private String shareImg;//分享的封面图片，注意在微信分享时该图片的大小不得超过32KB，这个很关键
 * private String shareDesc;//分享的描述文字
 * private PlatformActionListener platformActionListener = new PlatformActionListener() {...};//分享执行后的回调
 ![分享到QQ](https://github.com/z-pivot/ZVideoPlayer/blob/master/images/fenxiangQQ.png)
