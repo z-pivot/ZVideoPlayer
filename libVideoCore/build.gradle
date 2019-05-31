@@ -31,8 +31,8 @@ dependencies {
     api 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
     api 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8'
     api 'tv.danmaku.ijk.media:ijkplayer-exo:0.8.8'
-    implementation 'com.github.ctiao:DanmakuFlameMaster:0.9.25'
-    implementation 'com.github.ctiao:ndkbitmap-armv7a:0.9.21'
+    api 'com.github.ctiao:DanmakuFlameMaster:0.9.25'
+    api 'com.github.ctiao:ndkbitmap-armv7a:0.9.21'
     api 'com.danikula:videocache:2.7.1'
     implementation files('libs/exo-2.0.4.jar')
     implementation files('libs/MobCommons-2017.1201.1507.jar')

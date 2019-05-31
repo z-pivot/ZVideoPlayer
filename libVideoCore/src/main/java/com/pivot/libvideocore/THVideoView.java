@@ -217,7 +217,7 @@ public class THVideoView extends QSVideoViewHelp implements View.OnClickListener
         
         //切换清晰度
         btnSharpness.setOnClickListener(v -> {
-            final String[] items = {"标 清", "高 清", "超 清"};
+            final String[] items = {"超 清", "高 清", "标 清"};
             AlertDialog.Builder listDialog = new AlertDialog.Builder(getContext());
             listDialog.setAdapter(new ArrayAdapter<>(getContext(),R.layout.dialog_item, items), (dialog, which) -> {
                 int position = getPosition();
